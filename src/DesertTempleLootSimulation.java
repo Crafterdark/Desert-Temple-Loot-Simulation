@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 import Object.*;
-public class DesertTempleLootSimulator {
+public class DesertTempleLootSimulation {
     public static int d,i,g,e,b,rf,s,ih,gh,dh,bo,old_bo;
 
     //Item ID:
