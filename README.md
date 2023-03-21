@@ -27,6 +27,8 @@ Currently, this simulation supports the release:
 
     1.8
     1.7
+-------------------------
+* Usage of the Tool
 
 Generic Command Line:
 
