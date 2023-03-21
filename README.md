@@ -1,4 +1,4 @@
-# Desert Temple Loot Simulator
+# Desert Temple Loot Simulation
 
 - The main objective of this program is filtering and predicting loot in the Desert Temple structure that is found in Minecraft. (Faster than manual check)
 - It can be used to find new seeds for any% Set Seed Glitchless, used for Minecraft speedrunning.
