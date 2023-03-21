@@ -1,10 +1,15 @@
 # Desert Temple Loot Simulator
 
-- The main objective of this program is filtering loot in Desert Temple. (Which is faster than manually checking it ingame)
+- The main objective of this program is filtering and predicting loot in the Desert Temple structure that is found in Minecraft. (Faster than manual check)
 - It can be used to find new any% Set Seed Glitchless seeds, used for Minecraft speedrunning.
 - It can be also used for Category Extensions or other categories.
-- Credit to Mojang for the "enchanting & looting" systems.
-These systems were reworked from the game code and reused for the purpose explained above.  
+
+Important:
+
+- Full credit to Mojang for the "enchanting" and "looting" systems.
+These systems were reworked, reduced and rewritten from the original game code only to be reused for the purpose explained above.
+
+- This is NOT an official Minecraft product or program [!]
 
 Feature:
 
@@ -12,13 +17,13 @@ Feature:
 
 Current Limitation(s):
 
-- If Mineshaft (1) and/or Village (2) and/or Stronghold (3) pieces will collide with the chunk with loot, then this one will be different due to RNG calls.
-- The solution to predict this behaviour is to pre-generate all Mineshafts, Villages and Strongholds, but this will be made later.
-- The problem only affects Release 1.0-1.12.
+- If Mineshaft (1) and/or Village (2) and/or Stronghold (3) pieces will collide with the Desert Temple chunk, then the loot will be different due to extra RNG calls and the prediction fails.
+- The future solution to predict the loot in this edge case will be to pregenerate all Mineshafts, Villages and Strongholds. This will be made later.
+- This specific limitation should affect Minecraft Release 1.3 to 1.12 only.
 
-(There's another similar problem to solve in Release 1.13, while Release 1.14+ should be always fine)
+(There's another issue in Release 1.13 to be addressed, while Release 1.14+ should be free from inconsistencies)
 
-Currently, the simulation supports:
+Currently, this simulation supports the release:
 
     1.8
     1.7

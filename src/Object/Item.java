@@ -7,10 +7,10 @@ public class Item
 {
     public final int id, weight, minStack, maxStack, maxStackLimit;
     public static int currentIdItem, currentStack, currentSlot;
-    public Item(int id, int minChance, int maxChance, int weight, int maxStackLimit) {
+    public Item(int id, int minStack, int maxStack, int weight, int maxStackLimit) {
         this.id = id;
-        this.minStack = minChance;
-        this.maxStack = maxChance;
+        this.minStack = minStack;
+        this.maxStack = maxStack;
         this.weight = weight;
         this.maxStackLimit = maxStackLimit;
     }
