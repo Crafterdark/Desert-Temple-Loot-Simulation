@@ -32,11 +32,11 @@ Currently, this simulation supports the release:
 
 Generic Command Line:
 
-    java -jar DesertTempleLoot.jar input.txt output.txt releaseVersion minTradeEmeralds maxTradeEmeralds isDebug
+    java -jar Desert-Temple-Loot-Simulation_v1.jar input.txt output.txt releaseVersion minTradeEmeralds maxTradeEmeralds isDebug
 
 Example Command Line:
 
-    java -jar DesertTempleLoot.jar input.txt output.txt 1.8 7 17 false
+    java -jar Desert-Temple-Loot-Simulation_v1.jar input.txt output.txt 1.8 7 17 false
 
 Example Input:
 
