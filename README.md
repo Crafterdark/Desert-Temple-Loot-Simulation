@@ -31,6 +31,8 @@ Currently, this simulation supports the release:
 -------------------------
 * Usage of the Tool
 
+  - Requires JDK 14+
+
 Generic Command Line:
 
     java -jar Desert-Temple-Loot-Simulation_v1.jar input.txt output.txt releaseVersion minTradeEmeralds maxTradeEmeralds isDebug

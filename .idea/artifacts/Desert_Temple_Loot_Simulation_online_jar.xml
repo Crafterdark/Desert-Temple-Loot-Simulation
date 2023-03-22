@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Desert-Temple-Loot-Simulation_online:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Desert_Temple_Loot_Simulation_online_jar</output-path>
+    <root id="archive" name="Desert-Temple-Loot-Simulation_online.jar">
+      <element id="module-output" name="Desert-Temple-Loot-Simulation_online" />
+    </root>
+  </artifact>
+</component>
