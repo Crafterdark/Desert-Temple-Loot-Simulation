@@ -1,24 +1,32 @@
 package Object;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameVersion {
     public static String releaseVersion;
+    public static String mostRecentAndAvailableVersion = "1.8";
+    public static ArrayList<String> versionList = new ArrayList<>(List.of("1.3","1.4","1.5","1.6","1.7","1.8"));
 
     public static String getGameVersion(){
         return releaseVersion;
     }
 
-    public static boolean higherThan(String highestVersion, String lowestVersion){
-        if (lowestVersion.equals("1.3")){
-            return !highestVersion.equals("1.3");
-        }
+    public static boolean higherOrEqualThan(String gameVersion, String comparedVersion){
 
-        //TODO: Add the other cases
+        int index1 = versionList.indexOf(comparedVersion);
+        int index2 = versionList.indexOf(gameVersion);
 
-        else if(lowestVersion.equals("1.8")){
-            return highestVersion.equals("1.8");
-        }
+        return index2 >= index1; //if gameVersion >= comparedVersion
+    }
 
-        return false; //ERROR
+    public static boolean betweenVersionsOrEqualThan(String gameVersion, String rangeVersionMin, String rangeVersionMax){
+
+        int indexMin = versionList.indexOf(rangeVersionMin);
+        int indexMax = versionList.indexOf(rangeVersionMax);
+        int indexGameVer = versionList.indexOf(gameVersion);
+
+        return (indexMax >= indexGameVer) && (indexGameVer >= indexMin); // indexMax >= indexGameVer >= indexMin
     }
 
     public static void setGameVersionAndInitObjects(String gameVersion){

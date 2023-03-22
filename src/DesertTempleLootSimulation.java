@@ -1,6 +1,9 @@
 import java.io.*;
 import java.util.*;
 import Object.*;
+
+import static Object.GameVersion.mostRecentAndAvailableVersion;
+
 public class DesertTempleLootSimulation {
     public static int d,i,g,e,b,rf,s,ih,gh,dh,bo,old_bo;
 
@@ -17,7 +20,7 @@ public class DesertTempleLootSimulation {
     //DH [9] 1
     //BO [10] 1
 
-    public static String releaseVersion = "1.8"; //assume newest
+    public static String releaseVersion = mostRecentAndAvailableVersion;
     public static int total_e, chest;
     public static boolean debug_input = false;
     public static boolean debug_ench_show = false;
@@ -81,6 +84,17 @@ public class DesertTempleLootSimulation {
     public static void simulateRandomEnchOnBook(Random rand, int enchLevel) {
         enchList = EnchContainer.createEnchContainersForBook(rand, enchLevel);
     }
+
+    public static void simulateRandomEnchOnBook(Random rand) {
+       EnchBase uniqueEnch = EnchBase.e_b_list[rand.nextInt(EnchBase.e_b_list.length)]; //In these releases, only one enchantment can apply to book
+       int minLevel = uniqueEnch.getMinEnchLevel();
+       int maxLevel = uniqueEnch.getMaxEnchLevel();
+       int uniqueEnchLevel = -1;
+       if (minLevel == maxLevel)uniqueEnchLevel = 1;
+       else if (minLevel < maxLevel )uniqueEnchLevel = rand.nextInt(maxLevel - minLevel + 1);
+       enchList = new ArrayList<>(List.of(new EnchContainer(uniqueEnch,uniqueEnchLevel)));
+    }
+
     public static boolean simulateDesertTempleLoot(long worldSeed, int templeX, int templeZ) {
 
         resetLootCount();
@@ -94,7 +108,8 @@ public class DesertTempleLootSimulation {
 
         while (chest<4){
             chest++;
-            simulateRandomEnchOnBook(globalRand, 30);
+            if(GameVersion.higherOrEqualThan(releaseVersion,"1.7"))simulateRandomEnchOnBook(globalRand, 30);
+            else if(GameVersion.betweenVersionsOrEqualThan(releaseVersion,"1.3","1.6"))simulateRandomEnchOnBook(globalRand);
             Chest chestObject = new Chest(chest);
             chestObject.simulateChestContent(globalRand, LootTable.currentDesertTempleLootTable, 2 + globalRand.nextInt(5));
             addItemsToLoot();
@@ -114,7 +129,7 @@ public class DesertTempleLootSimulation {
             return (total_e >= tradeEmeraldsMin) && (total_e <= tradeEmeraldsMax);
         }
 
-        return false;
+        else return tradeEmeraldsMin == 0; //Allows to check the output with any trade if this is set to 0
     }
     public static void main(String[] argv) throws IOException {
 
@@ -176,11 +191,11 @@ public class DesertTempleLootSimulation {
         {
             //Testing worldSeed, it is used for checking the Desert Temple simulation on a single case.
 
-            worldSeed = 364115059209886541L;
-            templeX = 45;
-            templeZ = -9;
+            worldSeed = -1225265174872649318L;
+            templeX = -928/16;
+            templeZ = 864/16;
 
-            releaseVersion = "1.8";
+            releaseVersion = "1.6";
 
             GameVersion.setGameVersionAndInitObjects(releaseVersion);
 
@@ -194,6 +209,9 @@ public class DesertTempleLootSimulation {
             //Expected Output 2:
             //Seed:364115059209886541, 720, -144, 720, -224, 623, -273, 916, 0, 2, 26, 3, 10, 4, 1, 0, 0, 0, 2, 6
             //Temple: 45 -9
+            //Expected Output 3:
+            //-1225265174872649318, -928, 864, -912, 688, -941, 655, 1779, 2, 0, 7, 3, 33, 21, 0, 0, 2, 0, 0, 3 (1.6)
+
 
 
             if (simulateDesertTempleLoot(worldSeed, templeX, templeZ)) {

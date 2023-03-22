@@ -8,7 +8,7 @@ import static Object.GameVersion.getGameVersion;
 public class LootTable {
 
     public static ArrayList<Item> currentDesertTempleLootTable;
-    public static final ArrayList<Item> desertTempleLootTable_1_7_to_1_8 = new ArrayList<>(List.of(
+    public static final ArrayList<Item> desertTempleLootTable_1_6_to_1_8 = new ArrayList<>(List.of(
             new Item(0,1, 3, 3,64),
             new Item(1,1, 5, 10,64),
             new Item(2,2, 7, 15,64),
@@ -22,8 +22,8 @@ public class LootTable {
             new Item(10,1, 1, 1,1))
     );
 
-    //TODO: Add the pre1.7 loot tables
-    public static final ArrayList<Item> desertTempleLootTable_pre1_7 = new ArrayList<>(List.of(
+    //TODO: Add the 1.3-1.5 loot tables
+    public static final ArrayList<Item> desertTempleLootTable_pre1_6 = new ArrayList<>(List.of(
             new Item(0,1, 3, 3,64),
             new Item(1,1, 5, 10,64),
             new Item(2,2, 7, 15,64),
@@ -39,8 +39,8 @@ public class LootTable {
 
     public static void setCurrentDesertTempleLootTable(){
         switch (getGameVersion()) {
-            case "1.8", "1.7" -> currentDesertTempleLootTable = desertTempleLootTable_1_7_to_1_8;
-            case "1.6" -> currentDesertTempleLootTable = desertTempleLootTable_pre1_7;
+            case "1.8", "1.7", "1.6" -> currentDesertTempleLootTable = desertTempleLootTable_1_6_to_1_8;
+            case "1.5" -> currentDesertTempleLootTable = desertTempleLootTable_pre1_6;
         }
     }
 

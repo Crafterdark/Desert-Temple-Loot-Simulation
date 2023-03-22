@@ -27,6 +27,7 @@ Currently, this simulation supports the release:
 
     1.8
     1.7
+    1.6
 -------------------------
 * Usage of the Tool
 

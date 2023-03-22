@@ -1,7 +1,7 @@
 package Object;
 import java.util.ArrayList;
 
-import static Object.GameVersion.higherThan;
+import static Object.GameVersion.higherOrEqualThan;
 
 public class EnchBase {
 
@@ -39,7 +39,8 @@ public class EnchBase {
             ProjectileProtection,
             Respiration,
             AquaAffinity,
-            Thorns,Sharpness,
+            Thorns,
+            Sharpness,
             Smite,
             BaneOfArthropods,
             Knockback,
@@ -52,12 +53,11 @@ public class EnchBase {
             Power,
             Punch,
             Flame,
-            Infinity,
+            Infinity;
+    public static EnchBase //Enchantments that change depending on the Release
+            DepthStrider,
             LuckOfTheSea,
             Lure;
-    public static EnchBase //Enchantments that change depending on the Release
-            DepthStrider;
-
 
     static {
 
@@ -71,7 +71,7 @@ public class EnchBase {
         Respiration = new EnchBase(5, 2,1);
         AquaAffinity = new EnchBase(6, 2,2);
         Thorns = new EnchBase(7,1,3);
-        if(higherThan(GameVersion.getGameVersion(),"1.8"))DepthStrider = new EnchBase(8,2,4);
+        if(higherOrEqualThan(GameVersion.getGameVersion(),"1.8"))DepthStrider = new EnchBase(8,2,4);
         Sharpness = new EnchBase(16,  10,5,0);
         Smite = new EnchBase(17,  5,5, 1);
         BaneOfArthropods = new EnchBase(18,5,5, 2);
@@ -86,8 +86,8 @@ public class EnchBase {
         Punch = new EnchBase(49, 2,13);
         Flame = new EnchBase(50, 2,14);
         Infinity = new EnchBase(51, 1,15);
-        LuckOfTheSea = new EnchBase(61, 2,8);
-        Lure = new EnchBase(62,2,16);
+        if(higherOrEqualThan(GameVersion.getGameVersion(),"1.7"))LuckOfTheSea = new EnchBase(61, 2,8);
+        if(higherOrEqualThan(GameVersion.getGameVersion(),"1.7"))Lure = new EnchBase(62,2,16);
     }
     public static ArrayList<EnchBase> allowedEnchList  = new ArrayList<>();
 
@@ -114,14 +114,10 @@ public class EnchBase {
     }
 
     public static void selectMaxEnchList(String releaseVersion){
-        if (releaseVersion.equals("1.8")){
-            maxEnchIdList = 63;
-        }
-        else if (releaseVersion.equals("1.7")){
-            maxEnchIdList = 63;
-        }
-        else{
-            maxEnchIdList = 63; //Assume newest
+        switch (releaseVersion) {
+            case "1.8", "1.7" -> maxEnchIdList = 63;
+            case "1.6" -> maxEnchIdList = 52;
+            default -> maxEnchIdList = 64; //Assume newest + 1
         }
         e_b_list = new EnchBase[maxEnchIdList];
         e_list = new EnchBase[256];
