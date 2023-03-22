@@ -116,7 +116,7 @@ public class EnchBase {
     public static void selectMaxEnchList(String releaseVersion){
         switch (releaseVersion) {
             case "1.8", "1.7" -> maxEnchIdList = 63;
-            case "1.6" -> maxEnchIdList = 52;
+            case "1.6","1.5" -> maxEnchIdList = 52;
             default -> maxEnchIdList = 64; //Assume newest + 1
         }
         e_b_list = new EnchBase[maxEnchIdList];

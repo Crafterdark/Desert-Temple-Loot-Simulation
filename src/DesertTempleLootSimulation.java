@@ -195,7 +195,7 @@ public class DesertTempleLootSimulation {
             templeX = -928/16;
             templeZ = 864/16;
 
-            releaseVersion = "1.6";
+            releaseVersion = "1.5";
 
             GameVersion.setGameVersionAndInitObjects(releaseVersion);
 
