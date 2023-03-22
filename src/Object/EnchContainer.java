@@ -108,9 +108,9 @@ public class EnchContainer {
                             enchContainers.add(new EnchContainer(ench, enchLevel));
                         }
 
-                    } else if (getGameVersion().equals("1.7")) {
+                    } else if (getGameVersion().equals("1.7.2")) {
 
-                        //The game accidentally used a simple HashMap in 1.7, which caused the list to be rehashed and reordered, instead of the intended ascending order.
+                        //The game accidentally used a simple HashMap in 1.7.2-1.7.10, which caused the list to be rehashed and reordered, instead of the intended ascending order.
                         //This code simulates that part to retrieve the correct reordered list
 
                         if (chaoticMap == null) chaoticMap = new HashMap<>();
@@ -122,7 +122,7 @@ public class EnchContainer {
             }
         }
 
-        if (getGameVersion().equals("1.7")) {
+        if (getGameVersion().equals("1.7.2")) {
             enchIds.addAll(chaoticMap.keySet());
             enchContainers.addAll(chaoticMap.values());
         }

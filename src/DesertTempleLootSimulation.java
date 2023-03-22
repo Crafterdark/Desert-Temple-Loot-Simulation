@@ -108,8 +108,8 @@ public class DesertTempleLootSimulation {
 
         while (chest<4){
             chest++;
-            if(GameVersion.higherOrEqualThan(releaseVersion,"1.7"))simulateRandomEnchOnBook(globalRand, 30);
-            else if(GameVersion.betweenVersionsOrEqualThan(releaseVersion,"1.3","1.6"))simulateRandomEnchOnBook(globalRand);
+            if(GameVersion.higherOrEqualThan(releaseVersion,"1.7.2"))simulateRandomEnchOnBook(globalRand, 30);
+            else if(GameVersion.betweenVersionsOrEqualThan(releaseVersion,"1.4.6","1.6.1"))simulateRandomEnchOnBook(globalRand);
             Chest chestObject = new Chest(chest);
             chestObject.simulateChestContent(globalRand, LootTable.currentDesertTempleLootTable, 2 + globalRand.nextInt(5));
             addItemsToLoot();
@@ -121,15 +121,27 @@ public class DesertTempleLootSimulation {
 
     }
     public static boolean checkTradingConditions(int g_item, int rf_item, int e_item){
-        int bothTrades = (g_item/8) + (rf_item/36);
-        total_e = e_item;
 
-        if (bothTrades>0){
-            if (bothTrades!=1) total_e+=bothTrades;
+        total_e = e_item; //Total emeralds found in the Desert Temple
+
+        int totalTrading;
+
+        if(GameVersion.getGameVersion().equals("1.8")) {
+            totalTrading = (g_item / 8) + (rf_item / 36);
+            if (totalTrading > 0) {
+                if (totalTrading != 1) total_e += totalTrading;
+                return (total_e >= tradeEmeraldsMin) && (total_e <= tradeEmeraldsMax);
+            }
+            return tradeEmeraldsMin == 0; //Allow to check the output even if no trade
+
+        }
+        else if (GameVersion.betweenVersionsOrEqualThan(releaseVersion,"1.3.1","1.7.2")){
+            totalTrading = (g_item / 8); //No rotten flesh trade in pre1.8
+            if (totalTrading > 0) total_e += totalTrading; //No restriction here
             return (total_e >= tradeEmeraldsMin) && (total_e <= tradeEmeraldsMax);
         }
 
-        else return tradeEmeraldsMin == 0; //Allows to check the output with any trade if this is set to 0
+        return false; //Unknown condition
     }
     public static void main(String[] argv) throws IOException {
 
@@ -195,7 +207,7 @@ public class DesertTempleLootSimulation {
             templeX = -928/16;
             templeZ = 864/16;
 
-            releaseVersion = "1.5";
+            releaseVersion = "1.3.1";
 
             GameVersion.setGameVersionAndInitObjects(releaseVersion);
 

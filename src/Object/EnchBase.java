@@ -39,7 +39,6 @@ public class EnchBase {
             ProjectileProtection,
             Respiration,
             AquaAffinity,
-            Thorns,
             Sharpness,
             Smite,
             BaneOfArthropods,
@@ -57,7 +56,8 @@ public class EnchBase {
     public static EnchBase //Enchantments that change depending on the Release
             DepthStrider,
             LuckOfTheSea,
-            Lure;
+            Lure,
+            Thorns;
 
     static {
 
@@ -70,7 +70,7 @@ public class EnchBase {
         ProjectileProtection = new EnchBase(4, 5,0, 4);
         Respiration = new EnchBase(5, 2,1);
         AquaAffinity = new EnchBase(6, 2,2);
-        Thorns = new EnchBase(7,1,3);
+        if(higherOrEqualThan(GameVersion.getGameVersion(),"1.4.6"))Thorns = new EnchBase(7,1,3);
         if(higherOrEqualThan(GameVersion.getGameVersion(),"1.8"))DepthStrider = new EnchBase(8,2,4);
         Sharpness = new EnchBase(16,  10,5,0);
         Smite = new EnchBase(17,  5,5, 1);
@@ -86,8 +86,8 @@ public class EnchBase {
         Punch = new EnchBase(49, 2,13);
         Flame = new EnchBase(50, 2,14);
         Infinity = new EnchBase(51, 1,15);
-        if(higherOrEqualThan(GameVersion.getGameVersion(),"1.7"))LuckOfTheSea = new EnchBase(61, 2,8);
-        if(higherOrEqualThan(GameVersion.getGameVersion(),"1.7"))Lure = new EnchBase(62,2,16);
+        if(higherOrEqualThan(GameVersion.getGameVersion(),"1.7.2"))LuckOfTheSea = new EnchBase(61, 2,8);
+        if(higherOrEqualThan(GameVersion.getGameVersion(),"1.7.2"))Lure = new EnchBase(62,2,16);
     }
     public static ArrayList<EnchBase> allowedEnchList  = new ArrayList<>();
 
@@ -115,8 +115,8 @@ public class EnchBase {
 
     public static void selectMaxEnchList(String releaseVersion){
         switch (releaseVersion) {
-            case "1.8", "1.7" -> maxEnchIdList = 63;
-            case "1.6","1.5" -> maxEnchIdList = 52;
+            case "1.8", "1.7.2" -> maxEnchIdList = 63;
+            case "1.6.1","1.4.6","1.3.1" -> maxEnchIdList = 52;
             default -> maxEnchIdList = 64; //Assume newest + 1
         }
         e_b_list = new EnchBase[maxEnchIdList];

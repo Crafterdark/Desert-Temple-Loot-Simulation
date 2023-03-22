@@ -6,7 +6,7 @@ import java.util.List;
 public class GameVersion {
     public static String releaseVersion;
     public static String mostRecentAndAvailableVersion = "1.8";
-    public static ArrayList<String> versionList = new ArrayList<>(List.of("1.3","1.4.5","1.4.6","1.5","1.6","1.7","1.8"));
+    public static ArrayList<String> versionList = new ArrayList<>(List.of("1.3.1","1.4.6","1.6.1","1.7.2","1.8"));
 
     public static String getGameVersion(){
         return releaseVersion;

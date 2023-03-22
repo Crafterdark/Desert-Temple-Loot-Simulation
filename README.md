@@ -25,10 +25,11 @@ Current Limitation(s):
 
 Currently, this simulation supports the release:
 
-    1.8
-    1.7
-    1.6
-    1.5
+    1.8         [same loot as 1.8.9]
+    1.7.2       [same loot as 1.7.10]
+    1.6         [same loot as 1.6.4]
+    1.4.6       [same loot as 1.5.2]
+    1.3.1       [same loot as 1.4.5]
 
 -------------------------
 * Usage of the Tool
